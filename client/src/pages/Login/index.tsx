@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -13,6 +12,8 @@ import { Button } from "@/components/ui/button";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -20,6 +21,8 @@ const loginSchema = z.object({
 });
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -32,33 +35,39 @@ export default function Login() {
     console.log(data);
   };
 
+  const handleSignUp = () => {
+    navigate("/signup");
+  };
+
   return (
-    <Card className="bg-transparent font-sans ">
+    <Card className="bg-transparent font-sans w-96">
       <CardHeader>
-        <CardTitle className="text-center text-3xl font-bold text-white">
-          Sign In With Your Email
+        <CardTitle className="text-center text-4xl font-bold text-white">
+          Sign In
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         <Form {...form}>
-          <form className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem className="max-w-sm items-center text-white font-sans ">
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="email"
-                      id="email"
-                      placeholder="Email"
-                      className="mt-2"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
+                <>
+                  <FormItem className="max-w-sm items-center text-white font-sans ">
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        id="email"
+                        placeholder="Email"
+                        className="mt-2"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                </>
               )}
             />
             <FormField
@@ -80,9 +89,17 @@ export default function Login() {
                 </FormItem>
               )}
             />
+
             <div className="flex space-x-8">
-              <Button className="flex-1 bg-purple-600">Sign Up</Button>
               <Button
+                name="signUp"
+                onClick={handleSignUp}
+                className="flex-1 bg-purple-600"
+              >
+                Sign Up
+              </Button>
+              <Button
+                name="signIn"
                 onClick={form.handleSubmit(onSubmit)}
                 type="submit"
                 className="flex-1 bg-purple-600"
