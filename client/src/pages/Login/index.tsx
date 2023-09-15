@@ -40,76 +40,78 @@ export default function Login() {
   };
 
   return (
-    <Card className="bg-transparent font-sans w-96">
-      <CardHeader>
-        <CardTitle className="text-center text-4xl font-bold text-white">
-          Sign In
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <>
+    <div className="w-full h-full flex items-center justify-center ">
+      <Card className="bg-transparent font-sans w-96 ">
+        <CardHeader>
+          <CardTitle className="text-center text-4xl font-bold text-white">
+            Sign In
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <>
+                    <FormItem className="max-w-sm items-center text-white font-sans ">
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="email"
+                          id="email"
+                          placeholder="Email"
+                          className="mt-2"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  </>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
                   <FormItem className="max-w-sm items-center text-white font-sans ">
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>Password</FormLabel>
                     <FormControl>
                       <Input
-                        type="email"
-                        id="email"
-                        placeholder="Email"
+                        type="password"
+                        id="password"
+                        placeholder="Password"
                         className="mt-2"
                         {...field}
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
-                </>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem className="max-w-sm items-center text-white font-sans ">
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      id="password"
-                      placeholder="Password"
-                      className="mt-2"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                )}
+              />
 
-            <div className="flex space-x-8">
-              <Button
-                name="signUp"
-                onClick={handleSignUp}
-                className="flex-1 bg-purple-600"
-              >
-                Sign Up
-              </Button>
-              <Button
-                name="signIn"
-                onClick={form.handleSubmit(onSubmit)}
-                type="submit"
-                className="flex-1 bg-purple-600"
-              >
-                Sign In
-              </Button>
-            </div>
-          </form>
-        </Form>
-      </CardContent>
-    </Card>
+              <div className="flex space-x-8">
+                <Button
+                  name="signUp"
+                  onClick={handleSignUp}
+                  className="flex-1 bg-purple-600"
+                >
+                  Sign Up
+                </Button>
+                <Button
+                  name="signIn"
+                  onClick={form.handleSubmit(onSubmit)}
+                  type="submit"
+                  className="flex-1 bg-purple-600"
+                >
+                  Sign In
+                </Button>
+              </div>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
