@@ -28,8 +28,25 @@ const loginPostRoot = async (req, res) => {
         expiresIn: "5m",
       }
     );
+    const refreshToken = jwt.sign(
+      {
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+        },
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "7d",
+      }
+    );
+
     res.status(200).json({
       accessToken,
+      username: user.username,
+      email: user.email,
+      refreshToken,
     });
   } else {
     res.status(400).json({
