@@ -14,7 +14,7 @@ root.get("/", getRoot);
 root.post("/", postRoot);
 root.post("/api/v1/signup", signupPostRoot);
 root.post("/api/v1/login", loginPostRoot);
-root.get("/api/v1/current", validateTokenHandler, currentUserGet);
+root.get("/api/v1/me", validateTokenHandler, currentUserGet);
 root.post("/api/v1/refreshToken", refreshTokenPost);
 root.put(
   "/api/v1/changeUserPreferences",
