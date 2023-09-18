@@ -50,3 +50,8 @@ export const signUpUserFn = async (user: ILoginRequest) => {
   const response = await authApi.post<ILoginResponse>("/api/v1/signup", user);
   return response.data;
 };
+
+export const getAllNewsFn = async () => {
+  const response = await authApi.get("/api/v1/getAllNews");
+  return response.data;
+};

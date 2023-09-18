@@ -40,7 +40,7 @@ export default function Login() {
       toast({
         title: "Login Success",
         description: "You have successfully logged in.",
-        variant: "success",
+        variant: "default",
       });
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("refreshToken", data.accessToken);
@@ -51,7 +51,6 @@ export default function Login() {
       toast({
         title: "Error",
         description: error.response.data.message,
-        status: "error",
         variant: "destructive",
       });
     },
