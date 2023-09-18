@@ -5,7 +5,7 @@ import { useFilterStore } from "@/store/filterSlice";
 import { useTranslation } from "react-i18next";
 
 export default function Filter() {
-  const { searchType, filterQuery, setFilterQuery } = useFilterStore();
+  const { filterQuery, setFilterQuery } = useFilterStore();
   const { t } = useTranslation();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
