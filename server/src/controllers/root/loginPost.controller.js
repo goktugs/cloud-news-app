@@ -44,9 +44,8 @@ const loginPostRoot = async (req, res) => {
 
     res.status(200).json({
       accessToken,
-      username: user.username,
-      email: user.email,
       refreshToken,
+      id: user.id,
     });
   } else {
     res.status(400).json({
