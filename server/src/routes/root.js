@@ -9,6 +9,7 @@ import changeUserPreferencesPut from "../controllers/root/changeUserPreferecence
 import refreshTokenPost from "../controllers/root/refreshTokenPost.controller";
 import allNewsGet from "../controllers/root/allNewsGet.controller";
 import requestedNews from "../controllers/root/requestedNewsPost.controller";
+import getAllSources from "../controllers/root/allSourcesGet.controller";
 
 const root = express.Router();
 
@@ -26,5 +27,6 @@ root.put(
 
 root.post("/api/v1/postRequestedNews", requestedNews);
 root.get("/api/v1/getAllNews", allNewsGet);
+root.get("/api/v1/getAllSources", getAllSources);
 
 export default root;
