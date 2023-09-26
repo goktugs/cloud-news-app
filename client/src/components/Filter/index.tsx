@@ -3,9 +3,11 @@ import { Input } from "@/components/ui/input";
 import FilterDropdown from "./FilterDropdown";
 import { useFilterStore } from "@/store/filterSlice";
 import { useTranslation } from "react-i18next";
+import FilterTime from "./FilterTime";
 
 export default function Filter() {
-  const { filterQuery, setFilterQuery } = useFilterStore();
+  const filterQuery = useFilterStore((state) => state.filterQuery);
+  const setFilterQuery = useFilterStore((state) => state.setFilterQuery);
   const { t } = useTranslation();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,6 +24,7 @@ export default function Filter() {
         onChange={handleChange}
       />
       <FilterDropdown />
+      <FilterTime />
     </div>
   );
 }

@@ -3,10 +3,10 @@ import { create } from "zustand";
 type FilterState = {
   filterQuery: string;
   setFilterQuery: (filterQuery: string) => void;
-  startDate: string;
-  setStartDate: (startDate: string) => void;
-  endDate: string;
-  setEndDate: (endDate: string) => void;
+  fromDate: string;
+  setFromDate: (fromDate: string) => void;
+  toDate: string;
+  setToDate: (toDate: string) => void;
   sources: string;
   setSources: (sources: string) => void;
   category: string;
@@ -16,10 +16,10 @@ type FilterState = {
 export const useFilterStore = create<FilterState>((set) => ({
   filterQuery: "news",
   setFilterQuery: (filterQuery: string) => set(() => ({ filterQuery })),
-  startDate: "",
-  setStartDate: (startDate: string) => set(() => ({ startDate })),
-  endDate: "",
-  setEndDate: (endDate: string) => set(() => ({ endDate })),
+  fromDate: "",
+  setFromDate: (fromDate: string) => set(() => ({ fromDate })),
+  toDate: "",
+  setToDate: (toDate: string) => set(() => ({ toDate })),
   sources: "",
   setSources: (sources: string) => set(() => ({ sources })),
   category: "",

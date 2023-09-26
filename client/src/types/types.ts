@@ -12,6 +12,12 @@ export interface ILoginRequest {
 export interface INewsResponse {
   news: INews;
   status: number;
+  message?: {
+    error: {
+      code: string;
+      message: string;
+    };
+  };
 }
 export interface INews {
   articles: IArticle[];

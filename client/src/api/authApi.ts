@@ -57,20 +57,30 @@ export const getAllNewsFn = async ({
   category,
   from,
   to,
+  page,
 }: {
-  q: string;
-  sources: string;
-  category: string;
-  from: string;
-  to: string;
+  q?: string;
+  sources?: string;
+  category?: string;
+  from?: string;
+  to?: string;
+  page?: number;
 }) => {
   const response = await authApi.get<INewsResponse>(
-    `/api/v1/getAllNews?q=${q}&sources=${sources}&category=${category}&from=${from}&to=${to}`
+    `/api/v1/getAllNews?q=${q}&sources=${sources}&category=${category}&from=${from}&to=${to}&page=${page}`
   );
   return response.data;
 };
 
 export const getAllSourcesFn = async () => {
   const response = await authApi.get(`/api/v1/getAllSources`);
+  return response.data;
+};
+
+export const postUserPreferencesFn = async (data: {
+  sources: string[];
+  authors: string[];
+}) => {
+  const response = await authApi.post(`/api/v1/userPreferences`, data);
   return response.data;
 };
