@@ -1,9 +1,10 @@
 import React from "react";
 import { Input } from "@/components/ui/input";
-import FilterDropdown from "./FilterDropdown";
 import { useFilterStore } from "@/store/filterSlice";
 import { useTranslation } from "react-i18next";
-import FilterTime from "./FilterTime";
+import FilterTime from "./FilterByTime";
+import FilterSource from "./FilterBySource";
+import FilterCategory from "./FilterByCategory";
 
 export default function Filter() {
   const filterQuery = useFilterStore((state) => state.filterQuery);
@@ -23,7 +24,11 @@ export default function Filter() {
         value={filterQuery}
         onChange={handleChange}
       />
-      <FilterDropdown />
+      {/* <FilterDropdown /> */}
+      <div className="flex space-x-4">
+        <FilterSource />
+        <FilterCategory />
+      </div>
       <FilterTime />
     </div>
   );

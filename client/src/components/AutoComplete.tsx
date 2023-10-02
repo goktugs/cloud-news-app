@@ -5,7 +5,13 @@ import {
   CommandInput,
 } from "@/components/ui/command";
 import { Command as CommandPrimitive } from "cmdk";
-import { useState, useRef, useCallback, type KeyboardEvent } from "react";
+import {
+  useState,
+  useRef,
+  useCallback,
+  type KeyboardEvent,
+  useEffect,
+} from "react";
 
 import { Skeleton } from "./ui/skeleton";
 import { cn } from "@/lib/utils";
@@ -88,6 +94,10 @@ export const AutoComplete = ({
     [onValueChange]
   );
 
+  useEffect(() => {
+    setInputValue(value?.label || "");
+  }, [value]);
+
   return (
     <CommandPrimitive onKeyDown={handleKeyDown}>
       <div>
@@ -115,6 +125,11 @@ export const AutoComplete = ({
               ) : null}
               {options.length > 0 && !isLoading ? (
                 <CommandGroup>
+                  <CommandItem>
+                    <div className="px-2 py-1 text-sm text-slate-500">
+                      {options.length} options
+                    </div>
+                  </CommandItem>
                   {options.map((option) => {
                     const isSelected = selected?.value === option.value;
                     return (

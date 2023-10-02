@@ -1,4 +1,4 @@
-import { ILoginRequest, ILoginResponse, INewsResponse } from "@/types/types";
+import { ILoginRequest, ILoginResponse } from "@/types/types";
 import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
@@ -48,32 +48,6 @@ export const loginUserFn = async (user: ILoginRequest) => {
 
 export const signUpUserFn = async (user: ILoginRequest) => {
   const response = await authApi.post<ILoginResponse>("/api/v1/signup", user);
-  return response.data;
-};
-
-export const getAllNewsFn = async ({
-  q,
-  sources,
-  category,
-  from,
-  to,
-  page,
-}: {
-  q?: string;
-  sources?: string;
-  category?: string;
-  from?: string;
-  to?: string;
-  page?: number;
-}) => {
-  const response = await authApi.get<INewsResponse>(
-    `/api/v1/getAllNews?q=${q}&sources=${sources}&category=${category}&from=${from}&to=${to}&page=${page}`
-  );
-  return response.data;
-};
-
-export const getAllSourcesFn = async () => {
-  const response = await authApi.get(`/api/v1/getAllSources`);
   return response.data;
 };
 

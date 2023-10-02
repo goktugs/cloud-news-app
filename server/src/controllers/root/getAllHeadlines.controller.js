@@ -2,21 +2,19 @@ const NewsAPI = require("newsapi");
 
 const newsapi = new NewsAPI(`${process.env.NEWSAPIORG_KEY}`);
 
-const allNewsGet = async (req, res) => {
-  const { from, to, category, sources, q, page } = req.query;
+const getAllHeadlines = async (req, res) => {
+  const { category, sources, q, page } = req.query;
   try {
-    const news = await newsapi.v2.everything({
-      q: q?.length > 0 ? q : "news",
+    const headlines = await newsapi.v2.topHeadlines({
+      q: q?.length > 0 ? q : "",
       sources,
       category,
-      from,
-      to,
       pageSize: 24,
       page,
     });
     res.json({
       status: 200,
-      news,
+      headlines,
     });
   } catch (error) {
     console.log(error);
@@ -27,4 +25,4 @@ const allNewsGet = async (req, res) => {
   }
 };
 
-export default allNewsGet;
+export default getAllHeadlines;

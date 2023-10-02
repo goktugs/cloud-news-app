@@ -19,6 +19,24 @@ export interface INewsResponse {
     };
   };
 }
+
+export interface IHeadlinesresponse {
+  headlines: IHeadlines;
+  status: number;
+  message?: {
+    error: {
+      code: string;
+      message: string;
+    };
+  };
+}
+
+export interface IHeadlines {
+  articles: IArticle[];
+  status: string;
+  totalResults: number;
+}
+
 export interface INews {
   articles: IArticle[];
   status: string;
