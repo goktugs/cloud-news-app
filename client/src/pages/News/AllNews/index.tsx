@@ -13,7 +13,7 @@ export default function AllNews() {
   const fromDate = filterStore.fromDate;
   const toDate = filterStore.toDate;
   const filterQuery = filterStore.filterQuery;
-  const sources = filterStore.sources;
+  const sources = filterStore.selectedSource;
   const category = filterStore.category;
 
   const debouncedFilterQuery = useDebounce(filterQuery, 500);

@@ -25,7 +25,7 @@ const loginPostRoot = async (req, res) => {
       },
       process.env.JWT_SECRET,
       {
-        expiresIn: "5m",
+        expiresIn: "15d",
       }
     );
     const refreshToken = jwt.sign(
@@ -38,7 +38,7 @@ const loginPostRoot = async (req, res) => {
       },
       process.env.JWT_SECRET,
       {
-        expiresIn: "7d",
+        expiresIn: "15d",
       }
     );
 

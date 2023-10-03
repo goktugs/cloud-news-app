@@ -9,6 +9,38 @@ const newsApi = axios.create({
 
 newsApi.defaults.headers.common["Accept"] = "application/json";
 
+newsApi.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+newsApi.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      const refreshToken = localStorage.getItem("refreshToken");
+
+      const response = await newsApi.post("/refresh", {
+        refreshToken: refreshToken?.replace(/['"]+/g, ""),
+      });
+      localStorage.setItem("accessToken", response.data.accessToken);
+
+      return newsApi(originalRequest);
+    }
+    return Promise.reject(error);
+  }
+);
+
 export const getAllNewsFn = async ({
   q,
   sources,

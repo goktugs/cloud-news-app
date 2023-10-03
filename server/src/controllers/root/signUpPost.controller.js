@@ -2,7 +2,7 @@ import UserModel from "../../models/user.model";
 import bcrypt from "bcrypt";
 
 const signupPostRoot = async (req, res) => {
-  const { email, password, username } = req.body;
+  const { email, password, username, avatarUrl } = req.body;
 
   if (!username || !email || !password) {
     return res.status(400).json({
@@ -24,6 +24,7 @@ const signupPostRoot = async (req, res) => {
     username,
     email,
     password: passwordHash,
+    avatarUrl,
   });
 
   const user = await newUser.save();

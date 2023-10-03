@@ -1,7 +1,6 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Layout from "./layout";
-import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import { Toaster } from "@/components/ui/toaster";
 import News from "./pages/News";

@@ -7,8 +7,8 @@ type FilterState = {
   setFromDate: (fromDate: string) => void;
   toDate: string;
   setToDate: (toDate: string) => void;
-  sources: string;
-  setSources: (sources: string) => void;
+  selectedSource: string;
+  setSelectedSource: (sources: string) => void;
   category: string;
   setCategory: (category: string) => void;
 };
@@ -20,8 +20,9 @@ export const useFilterStore = create<FilterState>((set) => ({
   setFromDate: (fromDate: string) => set(() => ({ fromDate })),
   toDate: "",
   setToDate: (toDate: string) => set(() => ({ toDate })),
-  sources: "",
-  setSources: (sources: string) => set(() => ({ sources })),
+  selectedSource: "",
+  setSelectedSource: (selectedSource: string) =>
+    set(() => ({ selectedSource })),
   category: "",
   setCategory: (category: string) => set(() => ({ category })),
 }));

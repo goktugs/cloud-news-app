@@ -1,9 +1,11 @@
+import UserModel from "../../models/user.model";
+
 const getMe = async (req, res) => {
   try {
     const userId = req.user.id;
-    const user = await req.db.User.findOne({
-      _id: userId,
-    });
+    const user = await UserModel.findById(userId).select(
+      "username email avatarUrl"
+    );
 
     if (!user) {
       return res.status(404).json({

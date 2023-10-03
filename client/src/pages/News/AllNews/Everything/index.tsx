@@ -76,13 +76,10 @@ export default function Everything({
     </div>
   ) : data?.status === 500 ? (
     <div className="w-full h-full text-white">
-      <h1>everyhtind</h1>
-
       <p className="text-center">{data?.message?.error.message}</p>
     </div>
   ) : (
     <>
-      <h1>everyhtind</h1>
       {data?.news?.articles?.map((item: IArticle, index: number) => (
         <Card key={index} className="bg-transparent text-white flex flex-col">
           <CardHeader>
@@ -90,7 +87,9 @@ export default function Everything({
             <CardDescription className="flex justify-between flex-col">
               {" "}
               <span className="flex justify-between">
-                <span>{item.author}</span>
+                <span className="whitespace-nowrap overflow-ellipsis overflow-hidden">
+                  {item.author}
+                </span>
                 <span>{format(new Date(item.publishedAt), "PPP")}</span>
               </span>
               <span className="text-center mt-2">{item.source.name}</span>

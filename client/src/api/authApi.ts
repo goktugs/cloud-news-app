@@ -58,3 +58,8 @@ export const postUserPreferencesFn = async (data: {
   const response = await authApi.post(`/api/v1/userPreferences`, data);
   return response.data;
 };
+
+export const getMeFn = async () => {
+  const response = await authApi.get(`/api/v1/getMe`);
+  return response.data;
+};

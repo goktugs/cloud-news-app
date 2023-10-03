@@ -62,8 +62,6 @@ export default function Headlines({
     }
   );
 
-  console.log(data);
-
   return isLoading ? (
     <div className="w-full h-full">
       <LoadingSpinner />

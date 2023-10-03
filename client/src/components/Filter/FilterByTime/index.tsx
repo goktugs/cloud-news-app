@@ -17,7 +17,7 @@ export default function FilterTime() {
   const setToDate = useFilterStore((state) => state.setToDate);
 
   return (
-    <div className="space-x-2">
+    <div className="flex flex-col md:flex-row space-y-4 md:space-x-2 md:space-y-0">
       <Popover>
         <PopoverTrigger asChild>
           <Button

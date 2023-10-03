@@ -1,13 +1,17 @@
 import { getAllSourcesFn } from "@/api/newsApi";
+import { changePreferencesFn } from "@/api/preferencesApi";
 import { AutoComplete } from "@/components/AutoComplete";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 import { useFilterStore } from "@/store/filterSlice";
 import { Label } from "@radix-ui/react-label";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export default function FilterSource() {
-  const sources = useFilterStore((state) => state.sources);
-  const setSources = useFilterStore((state) => state.setSources);
+  const selectedSource = useFilterStore((state) => state.selectedSource);
+  const setSelectedSource = useFilterStore((state) => state.setSelectedSource);
+
+  const { toast } = useToast();
 
   const { data } = useQuery(["sources"], getAllSourcesFn, {
     refetchOnWindowFocus: false,
@@ -29,21 +33,43 @@ export default function FilterSource() {
       ),
   });
 
+  const { mutate } = useMutation(async (data: string) => {
+    try {
+      await changePreferencesFn({
+        selectedSources: [data],
+        selectedCategories: [],
+        selectedAuthors: [],
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        //@ts-ignore
+        description: error.response.data.message,
+        variant: "destructive",
+      });
+    }
+  });
+
+  const handleAddPreffered = () => {
+    mutate(selectedSource);
+  };
+
   return (
     <div className="border p-4 rounded-md  text-center">
       <Label className="text-sm ">By Sources</Label>
-      <div className="flex items-center justify-center gap-2">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-2">
         <AutoComplete
           placeholder="Sources"
-          onValueChange={(value) => setSources(value.value)}
+          onValueChange={(value) => setSelectedSource(value.value)}
           value={{
-            label: sources,
-            value: sources,
+            label: selectedSource,
+            value: selectedSource,
           }}
           options={data}
           emptyMessage={"Not Found"}
         />
-        <Button onClick={() => setSources("")}>Clear</Button>
+        <Button onClick={() => setSelectedSource("")}>Clear</Button>
+        <Button onClick={() => handleAddPreffered()}>Add Preffered</Button>
       </div>
     </div>
   );

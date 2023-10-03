@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import FilterTime from "./FilterByTime";
 import FilterSource from "./FilterBySource";
 import FilterCategory from "./FilterByCategory";
+import { useSelectedTabStore } from "@/store/selectedTabSlice";
 
 export default function Filter() {
   const filterQuery = useFilterStore((state) => state.filterQuery);
@@ -15,6 +16,8 @@ export default function Filter() {
     setFilterQuery(e.target.value);
   };
 
+  const selectedTab = useSelectedTabStore((state) => state.selectedTab);
+
   return (
     <div className=" flex flex-col w-1/2 space-y-4 items-center justify-center mb-8">
       <Input
@@ -24,12 +27,15 @@ export default function Filter() {
         value={filterQuery}
         onChange={handleChange}
       />
-      {/* <FilterDropdown /> */}
-      <div className="flex space-x-4">
-        <FilterSource />
-        <FilterCategory />
-      </div>
-      <FilterTime />
+      {selectedTab === "all" || selectedTab === "" ? (
+        <>
+          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+            <FilterSource />
+            <FilterCategory />
+          </div>
+          <FilterTime />
+        </>
+      ) : null}
     </div>
   );
 }
