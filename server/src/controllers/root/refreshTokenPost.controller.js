@@ -28,7 +28,7 @@ const refreshTokenPost = async (req, res) => {
       },
       process.env.JWT_SECRET,
       {
-        expiresIn: "3d",
+        expiresIn: "50d",
       }
     );
 

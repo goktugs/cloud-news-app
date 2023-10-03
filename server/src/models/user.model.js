@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  avatarUrl: String,
   selectedSources: [String],
   selectedCategories: [String],
   selectedAuthors: [String],

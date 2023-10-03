@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const uri = process.env.MONGO_URI;
-console.log("im here ", uri);
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
