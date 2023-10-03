@@ -1,4 +1,4 @@
-:warning: **DUE TO PROVIDED APIS**: I cant build nor i cant make request more than 100 for 24 hour. So Please consider that.
+:warning: **DUE TO PROVIDED APIS**: I cant build nor i cant make request more than 100 for 24 hour. So Please consider that. ⚠️
 
 
 # Personalized News App
